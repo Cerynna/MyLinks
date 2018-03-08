@@ -7,8 +7,8 @@ include("views/partials/menu.php");
 
 /*var_dump($_SERVER);*/
 
-require('Entity/Base.php');
-require('Entity/Link.php');
+require_once('Entity/Base.php');
+require_once('Entity/Link.php');
 
 /*$base = new Base();*/
 
