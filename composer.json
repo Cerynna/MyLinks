@@ -1,12 +1,18 @@
 {
-    "name": "cerynna/cerynnalinks",
-    "authors": [
-        {
-            "name": "Jeremy MARTIN",
-            "email": "cerynna@gmail.com"
-        }
-    ],
-    "require": {
-        "php": "^7.2.3"
+  "name": "cerynna/cerynnalinks",
+  "authors": [
+    {
+      "name": "Jeremy MARTIN",
+      "email": "cerynna@gmail.com"
     }
+  ],
+  "require": {
+    "php": "^7.2"
+  },
+  "autoload": {
+    "psr-4": {
+      "": "src/"
+    },
+    "psr-0": {"Entity": "src/"}
+  }
 }

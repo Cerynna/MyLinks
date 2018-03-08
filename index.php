@@ -1,18 +1,21 @@
 <?php
 
+$loader = require __DIR__ . '/vendor/autoload.php';
+$loader->addPsr4('', __DIR__);
+
 
 include("views/partials/head.php");
 include("views/partials/menu.php");
 
 
+
+
 /*var_dump($_SERVER);*/
 
-require_once(__DIR__. 'Entity/Base.php');
-require_once(__DIR__. 'Entity/Link.php');
+/*require_once(__DIR__. 'Entity/Base.php');
+require_once(__DIR__. 'Entity/Link.php');*/
 
-/*$base = new Base();*/
-
-
+$base = new Entity\Base();
 
 
 $path = $_GET["route"];
@@ -40,7 +43,6 @@ switch ($path) {
         $listLinks = $base->getListLinks();
         include('views/listLinks.php');
         break;
-
 }
 
 

@@ -18,6 +18,8 @@
    
 */
 
+namespace Entity;
+
 class OpenGraph implements Iterator
 {
   /**

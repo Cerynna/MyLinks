@@ -6,6 +6,7 @@
  * Time: 21:32
  */
 
+namespace Entity;
 
 class Base
 {

@@ -6,6 +6,7 @@
  * Time: 22:10
  */
 
+namespace Entity;
 
 require('OpenGraph.php');
 
