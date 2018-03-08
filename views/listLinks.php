@@ -65,6 +65,7 @@
                                  data-link="<?php echo $link["slug"]; ?>"
                                  data-name="<?php echo $link["nom"]; ?>"
                             ><i class="fas fa-plus-square icons"></i></div>
+                            <i class="fas fa-pen-square icons"></i>
                         </div>
                     </div>
 

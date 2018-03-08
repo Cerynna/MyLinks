@@ -15,13 +15,15 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
             return true;
             break;
         case "addLink":
+            if (filter_var($_POST["link"], FILTER_VALIDATE_URL)) {
                 $link = new Entity\Link($_POST["link"]);
                 $arrayLink = $link->getArray();
                 $add = $base->addLink($arrayLink, $arrayLink['slug']);
                 if ($add === true) {
                     $base->addTags($arrayLink['tags'], $arrayLink['slug']);
                 }
-                header('Location: ?route=listLinks');
+            }
+            header('Location: ?route=listLinks');
             break;
     }
 }
@@ -35,7 +37,7 @@ switch ($path) {
     case null:
     case "":
         $listLinks = $base->getListLinks();
-    $listTags = $base->getListTags();
+        $listTags = $base->getListTags();
         include('views/listLinks.php');
         break;
     case "newLink":

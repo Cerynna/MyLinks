@@ -39,6 +39,7 @@ class Link
         $this->url = $url;
 
         $graph = \OpenGraph::fetch($url);
+        $base = new Base();
         if ($graph !== false) {
             $meta = $graph->getValues();
             $this->name = $meta['title'];
@@ -52,9 +53,15 @@ class Link
             $arrTag = [];
             foreach ($pureTags as $solotag) {
                 $solotag = preg_replace('/[^a-z]+/i', '', $solotag);
-                if (strlen($solotag) >= 3) {
-                    array_push($arrTag, strtolower($solotag));
+                $solotag = str_replace(' ', '', $solotag);
+                $solotag = strtolower($solotag);
+                if(!in_array($solotag, $base->getBadWords())){
+                    if (strlen($solotag) >= 3 ) {
+                        array_push($arrTag, $solotag);
+                        $arrTag = array_unique($arrTag);
+                    }
                 }
+
             }
 
             $this->tag = $arrTag;

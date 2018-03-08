@@ -76,24 +76,30 @@ class Base
                 $newArray = $this->tags;
                 foreach ($tags as $tag) {
                     $tag = preg_replace('/[^a-z]+/i', '', $tag);
-                    if (strlen($tag) >= 2) {
-                        if (!isset($newArray[$tag]) and !in_array($tag, $this->badWords)) {
-                            $newArray[$tag]['name'] = strtolower($tag);
-                            $newArray[$tag]['nb'] = 1;
-                            $newArray[$tag]['links'][] = $slug;
-
-                        } else {
-                            if (!in_array($slug, $newArray[$tag]['links'])) {
-                                $newArray[$tag]['nb'] = $newArray[$tag]['nb'] + 1;
+                    $tag = str_replace(' ', '',$tag);
+                    $tag = strtolower($tag);
+                    if (strlen($tag) >= 2 and !empty($tag)) {
+                        if (!in_array($tag, $this->badWords)) {
+                            if (!isset($newArray[$tag])) {
+                                $newArray[$tag]['name'] = $tag;
+                                $newArray[$tag]['nb'] = 1;
                                 $newArray[$tag]['links'][] = $slug;
-                                $newArray[$tag]['links'] = array_unique($newArray[$tag]['links']);
-                            }
 
+                            } else {
+                                if (!in_array($slug, $newArray[$tag]['links'])) {
+                                    $newArray[$tag]['nb'] = $newArray[$tag]['nb'] + 1;
+                                    $newArray[$tag]['links'][] = $slug;
+                                    $newArray[$tag]['links'] = array_unique($newArray[$tag]['links']);
+                                }
+
+                            }
                         }
+
                     }
                 }
             }
             $this->saveJson("tags.json", $newArray);
+            return true;
         } else {
             return false;
         }
@@ -142,5 +148,54 @@ class Base
     {
         file_put_contents($filename, serialize($array));
     }
+
+    /**
+     * @return mixed
+     */
+    public function getBase()
+    {
+        return $this->base;
+    }
+
+    /**
+     * @param mixed $base
+     */
+    public function setBase($base)
+    {
+        $this->base = $base;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTags()
+    {
+        return $this->tags;
+    }
+
+    /**
+     * @param mixed $tags
+     */
+    public function setTags($tags)
+    {
+        $this->tags = $tags;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getBadWords()
+    {
+        return $this->badWords;
+    }
+
+    /**
+     * @param mixed $badWords
+     */
+    public function setBadWords($badWords)
+    {
+        $this->badWords = $badWords;
+    }
+
 
 }
