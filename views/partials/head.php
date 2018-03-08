@@ -11,6 +11,10 @@
     <meta property="og:image" content="https://<?php echo $_SERVER["SERVER_NAME"]; ?>/public/img/MyLinks.png">
     <meta property="og:url" content="https://<?php echo $_SERVER["SERVER_NAME"]; ?>/">
 
+
+
+
+
     <meta name="twitter:title" content="MyLinks">
     <meta name="twitter:description" content="If we centralized useful links?">
     <meta name="twitter:image" content="https://<?php echo $_SERVER["SERVER_NAME"]; ?>/public/img/MyLinks.png">

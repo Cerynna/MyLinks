@@ -8,7 +8,7 @@
 
 ?>
 
-<div class="main container-fluid">
+<div class="main container">
     <div class="row">
 
         <?php
@@ -16,7 +16,7 @@
         foreach ($listLinks as $link) {
             ?>
 
-            <div class="col-3 myLink" data-link="<?php echo $link["link"]; ?>">
+            <div class="col-4 myLink" data-link="<?php echo $link["link"]; ?>">
                 <div class="myCard"
                      style="background-size: cover; background: #FFF url('<?php echo $link["meta"]["image"]; ?>') center no-repeat;">
                     <div class="content" id="link_<?php echo $i; ?>">

@@ -2,12 +2,13 @@
 node-sass --watch public/sass/main.scss public/sass/main.css
   */
 body {
-  background: #eff9e5;
+  background: url("/public/img/back.png") fixed;
+  background-size: cover;
   color: black; }
 
 nav {
-  background: black;
-  color: #eff9e5;
+  background: #1E232D;
+  color: white;
   padding: 10px 20vw;
   position: sticky;
   position: -webkit-sticky;
@@ -18,20 +19,26 @@ nav {
   z-index: 100; }
   nav a {
     font-size: 1.5em;
-    color: #eff9e5;
+    color: #00FF68;
     padding: 5px 10px;
-    border-radius: 5px; }
+    border-radius: 5px;
+    border: 2px solid #1E232D; }
     nav a:hover {
-      color: black;
-      background: #eff9e5;
-      text-decoration: none; }
+      color: #00FF68;
+      background: #1E232D;
+      text-decoration: none;
+      border: 2px solid #00FF68; }
 
 .main {
-  margin-top: 20px; }
+  margin-top: 20px;
+  background-color: #1E232D;
+  min-height: 50vh;
+  padding: 50px 70px;
+  color: #00FF68; }
   .main .tag {
     display: inline-flex;
     margin: 2px 5px;
-    background: #23390d;
+    background: #00cc53;
     color: white;
     padding: 5px 10px;
     border-radius: 5px;
@@ -52,7 +59,7 @@ nav {
   height: 200px;
   background-size: contain;
   margin-bottom: 50px;
-  border: 2px solid #3c6217;
+  border: 2px solid #00FF68;
   background-color: #FFF;
   cursor: pointer; }
   .myCard .content {
@@ -73,7 +80,7 @@ nav {
       .myCard .content .tags .tag {
         display: inline-flex;
         margin: 2px 5px;
-        background: #23390d;
+        background: #00cc53;
         color: white;
         padding: 5px 10px;
         border-radius: 5px;
@@ -81,7 +88,7 @@ nav {
         z-index: -10; }
     .myCard .content .name {
       position: relative;
-      color: #3c6217;
+      color: #00FF68;
       background: white;
       padding: 5px 10px;
       border-radius: 5px;
