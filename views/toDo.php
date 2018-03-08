@@ -23,6 +23,11 @@
                     <li>Filtre sur le nb de click</li>
                 </ul>
             </li>
+            <li>Bug
+                <ul>
+                    <li><s>Pas de Méta image => faire un screen de la page</s></li>
+                </ul>
+            </li>
         </ul>
     </div>
 </div>
