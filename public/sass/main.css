@@ -1,0 +1,93 @@
+/**
+node-sass --watch public/sass/main.scss public/sass/main.css
+  */
+body {
+  background: #eff9e5;
+  color: black; }
+
+nav {
+  background: black;
+  color: #eff9e5;
+  padding: 10px 20vw;
+  position: sticky;
+  position: -webkit-sticky;
+  position: -moz-sticky;
+  position: -ms-sticky;
+  position: -o-sticky;
+  top: 0px;
+  z-index: 100; }
+  nav a {
+    font-size: 1.5em;
+    color: #eff9e5;
+    padding: 5px 10px;
+    border-radius: 5px; }
+    nav a:hover {
+      color: black;
+      background: #eff9e5;
+      text-decoration: none; }
+
+.main {
+  margin-top: 20px; }
+
+.myCard {
+  width: 100%;
+  height: 200px;
+  background-size: contain;
+  margin-bottom: 50px;
+  border: 2px solid #3c6217;
+  background-color: #FFF;
+  cursor: pointer; }
+  .myCard .content {
+    width: 100%;
+    height: 200px;
+    padding: 10px; }
+    .myCard .content .tags {
+      position: relative;
+      top: -33px;
+      text-align: center;
+      height: 180px;
+      overflow: hidden;
+      overflow-y: scroll; }
+      .myCard .content .tags::-webkit-scrollbar {
+        display: none; }
+      .myCard .content .tags .push {
+        height: 150px; }
+      .myCard .content .tags .tag {
+        display: inline-flex;
+        margin: 2px 5px;
+        background: #23390d;
+        color: white;
+        padding: 5px 10px;
+        border-radius: 5px;
+        line-height: 2em;
+        z-index: -10; }
+    .myCard .content .name {
+      position: relative;
+      color: #3c6217;
+      background: white;
+      padding: 5px 10px;
+      border-radius: 5px;
+      width: 90%;
+      height: 34px;
+      margin: auto;
+      overflow: hidden;
+      z-index: 10; }
+    .myCard .content .desc {
+      display: none;
+      bottom: 50px;
+      padding: 10px;
+      height: 120px;
+      width: 100%;
+      text-align: justify;
+      overflow: hidden;
+      overflow-y: scroll; }
+      .myCard .content .desc::-webkit-scrollbar {
+        display: none; }
+  .myCard:hover .content {
+    background: rgba(255, 255, 255, 0.55) !important; }
+    .myCard:hover .content .name {
+      height: auto !important; }
+    .myCard:hover .content .desc {
+      display: block; }
+    .myCard:hover .content .tags {
+      display: none; }
