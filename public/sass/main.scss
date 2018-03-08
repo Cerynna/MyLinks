@@ -19,6 +19,9 @@ body {
   background: url("/public/img/back.png") fixed;
   background-size: cover;
   color: darken($color, 70%);
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 nav {
@@ -26,13 +29,13 @@ nav {
   color: lighten($color, 70%);
   padding: 10px 20vw;
   @include positionSticky(0px);
-  a{
+  a {
     font-size: 1.5em;
     color: #00FF68;
     padding: 5px 10px;
     border-radius: 5px;
     border: 2px solid $color2;
-    &:hover{
+    &:hover {
       color: #00FF68;
       background: $color2;
       text-decoration: none;
@@ -41,32 +44,30 @@ nav {
   }
 }
 
-
 .main {
   margin-top: 20px;
   background-color: $color2;
   min-height: 50vh;
   padding: 50px 70px;
   color: $color;
-  .modal{
+  .modal {
     position: fixed;
-    top:0;
-    left:0;
+    top: 0;
+    left: 0;
     width: 100vw;
     height: 100vh;
     background: rgba(0, 0, 0, 0.8);
     z-index: 1000;
     display: none;
-    .contentModal{
+    .contentModal {
       margin: 100px auto;
       width: 300px;
-      height: 150px;
       background: #FFF;
       padding: 10px;
       border-radius: 5px;
     }
   }
-  .tag{
+  .tag {
     display: inline-flex;
     margin: 2px 5px;
     background: darken($color, 10%);
@@ -74,7 +75,7 @@ nav {
     padding: 5px 10px;
     border-radius: 5px;
     line-height: 2em;
-    .nb{
+    .nb {
       background: #FFF;
       color: black;
       border-radius: 5px;
@@ -87,7 +88,8 @@ nav {
     }
   }
 }
-.icons{
+
+.icons {
   background: $color2;
   color: $color;
   padding: 10px;
@@ -95,20 +97,22 @@ nav {
   border-radius: 5px;
   border: 2px solid $color;
   cursor: pointer;
-  &:hover{
+  &:hover {
     background: $color;
     color: $color2;
   }
 }
-.icons-mini{
+
+.icons-mini {
   color: $color2;
   font-size: 1em;
   margin: auto 10px auto 5px;
   cursor: pointer;
-  &:hover{
+  &:hover {
     color: lighten($color2, 20%);
   }
 }
+
 .myCard {
   width: 100%;
   height: 200px;
@@ -121,7 +125,7 @@ nav {
     width: 100%;
     height: 196px;
     padding: 10px;
-    .tags{
+    .tags {
       position: relative;
       top: -33px;
       text-align: center;
@@ -131,10 +135,10 @@ nav {
       &::-webkit-scrollbar {
         display: none;
       }
-      .push{
+      .push {
         height: 150px;
       }
-      .tag{
+      .tag {
         display: inline-flex;
         margin: 2px 5px;
         background: darken($color, 10%);
@@ -173,15 +177,15 @@ nav {
         display: none;
       }
     }
-    .tools{
+    .tools {
       position: absolute;
-      bottom:0;
+      bottom: 0;
       width: 100%;
       display: none;
       margin: auto;
       padding: 5px 10px;
       border-radius: 5px;
-      .addTag{
+      .button {
         display: inline;
       }
     }
@@ -196,10 +200,10 @@ nav {
       .desc {
         display: block;
       }
-      .tags{
+      .tags {
         display: none;
       }
-      .tools{
+      .tools {
         display: block;
       }
     }

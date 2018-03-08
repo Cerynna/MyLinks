@@ -28,7 +28,7 @@ class Base
 
     public function getListLinks()
     {
-        return $this->base;
+        return array_reverse($this->base);
     }
 
     public function getListTags()
@@ -76,7 +76,7 @@ class Base
                 $newArray = $this->tags;
                 foreach ($tags as $tag) {
                     $tag = preg_replace('/[^a-z]+/i', '', $tag);
-                    $tag = str_replace(' ', '',$tag);
+                    $tag = str_replace(' ', '', $tag);
                     $tag = strtolower($tag);
                     if (strlen($tag) >= 2 and !empty($tag)) {
                         if (!in_array($tag, $this->badWords)) {
@@ -132,16 +132,23 @@ class Base
 
     public function addTagToLink($slug, $tag)
     {
-
         $this->base[$slug]["tags"][] = $tag;
         $this->saveJson("base.json", $this->base);
         $this->addTags([$tag], $slug);
-
     }
 
-    public function supLink()
+    public function updateLink($slug, $data)
     {
+        $this->base[$slug]["nom"] = $data["title"];
+        $this->base[$slug]["meta"]["description"] = $data["desc"];
+        $this->saveJson("base.json", $this->base);
+        return true;
+    }
 
+    public function deleteLink($slug)
+    {
+        unset($this->base[$slug]);
+        $this->saveJson("base.json", $this->base);
     }
 
     public function saveJson($filename, $array)
