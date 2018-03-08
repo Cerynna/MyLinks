@@ -109,6 +109,7 @@ nav {
       overflow: hidden;
       z-index: 10; }
     .myCard .content .desc {
+      color: #1E232D;
       display: none;
       bottom: 50px;
       padding: 10px;
