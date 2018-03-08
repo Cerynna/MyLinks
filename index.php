@@ -21,13 +21,13 @@ echo $path;
  * file_put_contents("base.json", json_encode($arrayPush));
  * {"nom":"test","link":"","meta":"","tag":["php","js","ect"]}
  */
-/*switch ($path) {
+switch ($path) {
     case "":
     case "home":
     case null:
         include('views/home.php');
         break;
-    case "add":
+    /*case "add":
         if ($_SERVER['REQUEST_METHOD'] === "POST") {
             $link = new Link($_POST["link"]);
             $arrayLink = $link->getArray();
@@ -39,9 +39,9 @@ echo $path;
     case "listLinks":
         $listLinks = $base->getListLinks();
         include('views/listLinks.php');
-        break;
+        break;*/
 
-}*/
+}
 
 
 include("views/partials/footer.php");
