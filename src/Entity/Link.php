@@ -42,8 +42,8 @@ class Link
         if ($graph !== false) {
             $meta = $graph->getValues();
             $this->name = $meta['title'];
-            if (empty($meta["meta"]["image"])) {
-                $meta["meta"]["image"] =  $this->setImage($meta["link"]);
+            if (empty($meta["image"])) {
+                $meta["image"] =  $this->getScreenshot($url);
             }
             $this->meta = $meta;
 
@@ -157,7 +157,7 @@ class Link
         return $text;
     }
 
-    public function setImage($siteURL){
+    public function getScreenshot($siteURL){
 
         $googlePagespeedData = file_get_contents("https://www.googleapis.com/pagespeedonline/v2/runPagespeed?url=$siteURL&screenshot=true");
         $googlePagespeedData = json_decode($googlePagespeedData, true);

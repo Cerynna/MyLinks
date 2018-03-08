@@ -15,8 +15,6 @@
         $i = 0;
         foreach ($listLinks as $link) {
 
-
-
             ?>
 
             <div class="col-4 myLink" data-link="<?php echo $link["link"]; ?>">

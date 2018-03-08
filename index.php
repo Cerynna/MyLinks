@@ -14,10 +14,9 @@ $path = $_GET["route"];
 
 
 switch ($path) {
-    case "":
-    case "home":
-    case null:
-        include('views/home.php');
+
+    case "newLink":
+        include('views/newLink.php');
         break;
     case "add":
         if ($_SERVER['REQUEST_METHOD'] === "POST") {
@@ -31,6 +30,8 @@ switch ($path) {
         }
         break;
     case "listLinks":
+    case null:
+    case "":
         $listLinks = $base->getListLinks();
         include('views/listLinks.php');
         break;
@@ -39,6 +40,9 @@ switch ($path) {
         include('views/listTags.php');
         break;
     case "toDo":
+        include('views/toDo.php');
+        break;
+    case "newLink":
         include('views/toDo.php');
         break;
 }

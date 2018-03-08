@@ -37,6 +37,13 @@ class Base
                 $newArray[] = $array;
             } else {
                 if (array_key_exists($slug, $this->base)) {
+                    if(!isset ($this->base[$slug]["meta"]["image"]) or is_null($this->base[$slug]["meta"]["image"])){
+                        $this->base[$slug]["meta"]["image"] = $array["meta"]["image"];
+                        file_put_contents("base.json", serialize($this->base));
+                        $message = "'" . $array["nom"] . "' Update  dans la liste";
+                        return false;
+                    }
+
                     $message = "'" . $array["nom"] . "' existe dans la liste";
                     return false;
                 }
