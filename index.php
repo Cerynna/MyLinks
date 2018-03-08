@@ -5,19 +5,12 @@ include("views/partials/menu.php");
 
 /*var_dump($_SERVER);*/
 
-require('Entity/Base.php');
+/*require('Entity/Base.php');
 require('Entity/Link.php');
 
 $base = new Base();
 
-$arrayPush[] = [
-    "nom" => "test3",
-    "link" => "",
-    "meta" => "",
-    "tag" => [
-        "php", "js", "ect"
-    ]
-];
+*/
 
 
 $path = $_GET["route"];
