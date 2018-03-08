@@ -1,0 +1,12 @@
+{
+    "name": "cerynna/cerynnalinks",
+    "authors": [
+        {
+            "name": "Jeremy MARTIN",
+            "email": "cerynna@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^7.2.3"
+    }
+}
