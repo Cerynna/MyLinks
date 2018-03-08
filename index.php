@@ -5,12 +5,12 @@ include("views/partials/menu.php");
 
 /*var_dump($_SERVER);*/
 
-/*require('Entity/Base.php');
+require('Entity/Base.php');
 require('Entity/Link.php');
 
 $base = new Base();
 
-*/
+
 
 
 $path = $_GET["route"];
