@@ -7,10 +7,10 @@ include("views/partials/menu.php");
 
 /*var_dump($_SERVER);*/
 
-/*require('Entity/Base.php');
+require('Entity/Base.php');
 require('Entity/Link.php');
 
-$base = new Base();*/
+/*$base = new Base();*/
 
 
 
@@ -27,7 +27,7 @@ switch ($path) {
     case null:
         include('views/home.php');
         break;
-    /*case "add":
+    case "add":
         if ($_SERVER['REQUEST_METHOD'] === "POST") {
             $link = new Link($_POST["link"]);
             $arrayLink = $link->getArray();
@@ -39,7 +39,7 @@ switch ($path) {
     case "listLinks":
         $listLinks = $base->getListLinks();
         include('views/listLinks.php');
-        break;*/
+        break;
 
 }
 
