@@ -14,7 +14,12 @@ $path = $_GET["route"];
 
 
 switch ($path) {
-
+    case "listLinks":
+    case null:
+    case "":
+        $listLinks = $base->getListLinks();
+        include('views/listLinks.php');
+        break;
     case "newLink":
         include('views/newLink.php');
         break;
@@ -29,20 +34,11 @@ switch ($path) {
             header('Location: ?route=listLinks');
         }
         break;
-    case "listLinks":
-    case null:
-    case "":
-        $listLinks = $base->getListLinks();
-        include('views/listLinks.php');
-        break;
     case "listTags":
         $listTags = $base->getListTags();
         include('views/listTags.php');
         break;
     case "toDo":
-        include('views/toDo.php');
-        break;
-    case "newLink":
         include('views/toDo.php');
         break;
 }
