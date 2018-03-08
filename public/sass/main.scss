@@ -41,12 +41,31 @@ nav {
   }
 }
 
+
 .main {
   margin-top: 20px;
   background-color: $color2;
   min-height: 50vh;
   padding: 50px 70px;
   color: $color;
+  .modal{
+    position: fixed;
+    top:0;
+    left:0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 1000;
+    display: none;
+    .contentModal{
+      margin: 100px auto;
+      width: 300px;
+      height: 150px;
+      background: #FFF;
+      padding: 10px;
+      border-radius: 5px;
+    }
+  }
   .tag{
     display: inline-flex;
     margin: 2px 5px;
@@ -75,11 +94,20 @@ nav {
   font-size: 2.8em;
   border-radius: 5px;
   border: 2px solid $color;
+  cursor: pointer;
   &:hover{
     background: $color;
     color: $color2;
   }
-
+}
+.icons-mini{
+  color: $color2;
+  font-size: 1em;
+  margin: auto 10px auto 5px;
+  cursor: pointer;
+  &:hover{
+    color: lighten($color2, 20%);
+  }
 }
 .myCard {
   width: 100%;
@@ -153,6 +181,9 @@ nav {
       margin: auto;
       padding: 5px 10px;
       border-radius: 5px;
+      .addTag{
+        display: inline;
+      }
     }
   }
 

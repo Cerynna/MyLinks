@@ -35,6 +35,22 @@ nav {
   min-height: 50vh;
   padding: 50px 70px;
   color: #00FF68; }
+  .main .modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 1000;
+    display: none; }
+    .main .modal .contentModal {
+      margin: 100px auto;
+      width: 300px;
+      height: 150px;
+      background: #FFF;
+      padding: 10px;
+      border-radius: 5px; }
   .main .tag {
     display: inline-flex;
     margin: 2px 5px;
@@ -60,10 +76,19 @@ nav {
   padding: 10px;
   font-size: 2.8em;
   border-radius: 5px;
-  border: 2px solid #00FF68; }
+  border: 2px solid #00FF68;
+  cursor: pointer; }
   .icons:hover {
     background: #00FF68;
     color: #1E232D; }
+
+.icons-mini {
+  color: #1E232D;
+  font-size: 1em;
+  margin: auto 10px auto 5px;
+  cursor: pointer; }
+  .icons-mini:hover {
+    color: #47536a; }
 
 .myCard {
   width: 100%;
@@ -129,6 +154,8 @@ nav {
       margin: auto;
       padding: 5px 10px;
       border-radius: 5px; }
+      .myCard .content .tools .addTag {
+        display: inline; }
   .myCard:hover .content {
     background: rgba(255, 255, 255, 0.55) !important; }
     .myCard:hover .content .name {

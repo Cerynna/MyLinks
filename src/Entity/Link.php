@@ -51,6 +51,7 @@ class Link
             $pureTags = explode(" ", $meta['description']);
             $arrTag = [];
             foreach ($pureTags as $solotag) {
+                $solotag = preg_replace('/[^a-z]+/i', '', $solotag);
                 if (strlen($solotag) >= 3) {
                     array_push($arrTag, strtolower($solotag));
                 }
