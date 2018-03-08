@@ -7,8 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     <meta name="twitter:title" content="MyLinks">
-    <meta name="twitter:description" content="And if we centralized useful links?">
-    <meta name="twitter:image" content="<?php echo __DIR__; ?>">
+    <meta name="twitter:description" content="If we centralized useful links?">
+    <meta name="twitter:image" content="<?php echo __DIR__. "../../public/img/MyLinks.png"; ?>">
     <meta name="twitter:card" content="summary_large_image">
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
