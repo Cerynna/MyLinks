@@ -38,6 +38,9 @@ switch ($path) {
         $listTags = $base->getListTags();
         include('views/listTags.php');
         break;
+    case "toDo":
+        include('views/toDo.php');
+        break;
 }
 
 
