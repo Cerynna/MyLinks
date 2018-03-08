@@ -38,7 +38,7 @@ class Link
     {
         $this->url = $url;
 
-        $graph = OpenGraph::fetch($url);
+        $graph = \OpenGraph::fetch($url);
         if ($graph !== false) {
             $meta = $graph->getValues();
             $this->name = $meta['title'];
