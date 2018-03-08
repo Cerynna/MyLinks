@@ -6,9 +6,18 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
+    <meta property="og:title" content="MyLinks">
+    <meta property="og:description" content="If we centralized useful links?">
+    <meta property="og:image" content="/public/img/MyLinks.png">
+    <meta property="og:url" content="<?php echo $_SERVER["PATH_INFO"]; ?>">
+
+<?php
+
+print_r($_SERVER);
+?>
     <meta name="twitter:title" content="MyLinks">
     <meta name="twitter:description" content="If we centralized useful links?">
-    <meta name="twitter:image" content="<?php echo __DIR__. "../../public/img/MyLinks.png"; ?>">
+    <meta name="twitter:image" content="/public/img/MyLinks.png">
     <meta name="twitter:card" content="summary_large_image">
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
