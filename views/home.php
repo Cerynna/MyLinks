@@ -9,7 +9,7 @@
 ?>
 <div class="main container">
     <div class="row">
-        <form action="?route=add" method="post">
+        <form action="/add" method="post">
             <label for="link">Ton Lien</label>
             <input type="text" id="link" name="link">
             <button type="submit">NewLink</button>
