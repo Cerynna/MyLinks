@@ -3,6 +3,7 @@ node-sass --watch public/sass/main.scss public/sass/main.css
   */
 
 $color: #00FF68;
+$color2: #1E232D;
 @mixin positionSticky($top) {
   position: sticky;
   position: -webkit-sticky;
@@ -21,7 +22,7 @@ body {
 }
 
 nav {
-  background: #1E232D;
+  background: $color2;
   color: lighten($color, 70%);
   padding: 10px 20vw;
   @include positionSticky(0px);
@@ -30,10 +31,10 @@ nav {
     color: #00FF68;
     padding: 5px 10px;
     border-radius: 5px;
-    border: 2px solid #1E232D;
+    border: 2px solid $color2;
     &:hover{
       color: #00FF68;
-      background: #1E232D;
+      background: $color2;
       text-decoration: none;
       border: 2px solid #00FF68;
     }
@@ -42,10 +43,10 @@ nav {
 
 .main {
   margin-top: 20px;
-  background-color: #1E232D;
+  background-color: $color2;
   min-height: 50vh;
   padding: 50px 70px;
-  color: #00FF68;
+  color: $color2;
   .tag{
     display: inline-flex;
     margin: 2px 5px;
@@ -67,7 +68,19 @@ nav {
     }
   }
 }
+.icons{
+  background: $color2;
+  color: $color;
+  padding: 10px;
+  font-size: 2.8em;
+  border-radius: 5px;
+  border: 2px solid $color;
+  &:hover{
+    background: $color;
+    color: $color2;
+  }
 
+}
 .myCard {
   width: 100%;
   height: 200px;
@@ -78,7 +91,7 @@ nav {
   cursor: pointer;
   .content {
     width: 100%;
-    height: 200px;
+    height: 196px;
     padding: 10px;
     .tags{
       position: relative;
@@ -107,7 +120,7 @@ nav {
 
     .name {
       position: relative;
-      color: $color;
+      color: $color2;
       background: lighten($color, 80%);
       padding: 5px 10px;
       border-radius: 5px;
@@ -121,7 +134,8 @@ nav {
       display: none;
       bottom: 50px;
       padding: 10px;
-      height: 120px;
+      min-height: 100px;
+      max-height: 100px;
       width: 100%;
       text-align: justify;
       overflow: hidden;
@@ -129,6 +143,15 @@ nav {
       &::-webkit-scrollbar {
         display: none;
       }
+    }
+    .tools{
+      position: absolute;
+      bottom:0;
+      width: 100%;
+      display: none;
+      margin: auto;
+      padding: 5px 10px;
+      border-radius: 5px;
     }
   }
 
@@ -143,6 +166,9 @@ nav {
       }
       .tags{
         display: none;
+      }
+      .tools{
+        display: block;
       }
     }
   }

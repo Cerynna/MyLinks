@@ -42,7 +42,11 @@ class Link
         if ($graph !== false) {
             $meta = $graph->getValues();
             $this->name = $meta['title'];
+            if (empty($meta["meta"]["image"])) {
+                $meta["meta"]["image"] =  $this->setImage($meta["link"]);
+            }
             $this->meta = $meta;
+
             $this->slug = substr($this->slugify($meta['title']), 0, 20);
             $pureTags = explode(" ", $meta['description']);
             $arrTag = [];
@@ -151,5 +155,14 @@ class Link
         }
 
         return $text;
+    }
+
+    public function setImage($siteURL){
+
+        $googlePagespeedData = file_get_contents("https://www.googleapis.com/pagespeedonline/v2/runPagespeed?url=$siteURL&screenshot=true");
+        $googlePagespeedData = json_decode($googlePagespeedData, true);
+        $screenshot = $googlePagespeedData['screenshot']['data'];
+        $screenshot = str_replace(array('_', '-'), array('/', '+'), $screenshot);
+        return  "data:image/jpeg;base64," . $screenshot ;
     }
 }

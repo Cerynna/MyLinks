@@ -10,11 +10,6 @@
     <meta property="og:description" content="If we centralized useful links?">
     <meta property="og:image" content="https://<?php echo $_SERVER["SERVER_NAME"]; ?>/public/img/MyLinks.png">
     <meta property="og:url" content="https://<?php echo $_SERVER["SERVER_NAME"]; ?>/">
-
-
-
-
-
     <meta name="twitter:title" content="MyLinks">
     <meta name="twitter:description" content="If we centralized useful links?">
     <meta name="twitter:image" content="https://<?php echo $_SERVER["SERVER_NAME"]; ?>/public/img/MyLinks.png">
@@ -30,6 +25,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"
             integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
             crossorigin="anonymous"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
 
     <title>MyLinks - Cerynna</title>
 </head>

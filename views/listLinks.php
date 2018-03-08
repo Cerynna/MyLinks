@@ -14,11 +14,15 @@
         <?php
         $i = 0;
         foreach ($listLinks as $link) {
+
+
+
             ?>
 
             <div class="col-4 myLink" data-link="<?php echo $link["link"]; ?>">
                 <div class="myCard"
-                     style="background-size: cover; background: #FFF url('<?php echo $link["meta"]["image"]; ?>') center no-repeat;">
+                     style="background-size: cover;
+                             background: #FFF url('<?php echo $link["meta"]["image"]; ?>') center no-repeat;">
                     <div class="content" id="link_<?php echo $i; ?>">
                         <div class="name"><?php echo $link["meta"]["title"]; ?></div>
                         <div class="desc"><?php echo $link["meta"]["description"]; ?></div>
@@ -31,6 +35,11 @@
                                 <?php
                             }
                             ?>
+
+                        </div>
+                        <div class="tools">
+                            <i class="fas fa-trash-alt icons"></i>
+                            <i class="fas fa-image icons"></i>
                         </div>
                     </div>
 
@@ -60,6 +69,7 @@
         });
         scrollTags();
     })
+
     function scrollTags() {
         $('.tags').stop().animate({
             scrollTop: 500
