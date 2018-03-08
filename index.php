@@ -21,7 +21,7 @@ $arrayPush[] = [
 
 
 $path = $_GET["route"];
-var_dump($path);
+echo $path;
 /*
  * file_put_contents("base.json", json_encode($arrayPush));
  * {"nom":"test","link":"","meta":"","tag":["php","js","ect"]}
