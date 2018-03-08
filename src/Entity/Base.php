@@ -36,6 +36,10 @@ class Base
             if (is_null($this->base)) {
                 $newArray[] = $array;
             } else {
+                if (array_key_exists($slug, $this->base)) {
+                    $message = "'" . $array["nom"] . "' existe dans la liste";
+                    return false;
+                }
                 $newArray = array_merge($this->base, [$slug => $array]);
             }
             file_put_contents("base.json", serialize($newArray));
@@ -45,7 +49,7 @@ class Base
         }
     }
 
-    public function addTags($tags)
+    public function addTags($tags, $slug)
     {
         if (is_array($tags)) {
             if (is_null($this->tags)) {
@@ -56,9 +60,15 @@ class Base
                     if (!isset($newArray[$tag])) {
                         $newArray[$tag]['name'] = $tag;
                         $newArray[$tag]['nb'] = 1;
+                        $newArray[$tag]['links'][] = $slug;
 
                     } else {
-                        $newArray[$tag]['nb'] = $newArray[$tag]['nb'] + 1;
+                        if (!in_array($slug, $newArray[$tag]['links'])) {
+                            $newArray[$tag]['nb'] = $newArray[$tag]['nb'] + 1;
+                            $newArray[$tag]['links'][] = $slug;
+                            $newArray[$tag]['links'] = array_unique($newArray[$tag]['links']);
+                        }
+
                     }
                 }
             }

@@ -28,6 +28,24 @@ nav {
 
 .main {
   margin-top: 20px; }
+  .main .tag {
+    display: inline-flex;
+    margin: 2px 5px;
+    background: #23390d;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    line-height: 2em; }
+    .main .tag .nb {
+      background: #FFF;
+      color: black;
+      border-radius: 5px;
+      margin: auto 5px auto 10px;
+      line-height: 22px;
+      font-size: 0.8em;
+      height: 25px;
+      width: 25px;
+      text-align: center; }
 
 .myCard {
   width: 100%;

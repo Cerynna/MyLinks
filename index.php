@@ -7,7 +7,6 @@ include("views/partials/head.php");
 include("views/partials/menu.php");
 
 
-
 $base = new Entity\Base();
 
 
@@ -25,13 +24,19 @@ switch ($path) {
             $link = new Entity\Link($_POST["link"]);
             $arrayLink = $link->getArray();
             $add = $base->addLink($arrayLink, $arrayLink['slug']);
-            $base->addTags($arrayLink['tags']);
+            if ($add === true) {
+                $base->addTags($arrayLink['tags'], $arrayLink['slug']);
+            }
             header('Location: ?route=listLinks');
         }
         break;
     case "listLinks":
         $listLinks = $base->getListLinks();
         include('views/listLinks.php');
+        break;
+    case "listTags":
+        $listTags = $base->getListTags();
+        include('views/listTags.php');
         break;
 }
 
