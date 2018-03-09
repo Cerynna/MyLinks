@@ -1,1 +1,4 @@
 /vendor/
+/base.json
+/tags.json
+/badWords.json

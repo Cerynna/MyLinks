@@ -166,6 +166,7 @@
         $('.addTag').click(function (callback) {
             $('.submitTag').attr('data-link', $(this).data('link'));
             modalTag.fadeIn();
+            $('#newTag').focus();
             $('body').addClass('modal-open');
         });
         $('.editLink').click(function (callback) {
@@ -177,6 +178,7 @@
             inputTitleLink.val(title);
             inputDescLink.val(desc);
             modalEdit.fadeIn();
+            inputTitleLink.focus();
             $('body').addClass('modal-open');
         });
         $(document).keyup(function (e) {
