@@ -37,6 +37,13 @@
                     <li><s>Delete</s></li>
                 </ul>
             </li>
+            <li>
+                Upgrade
+                <ul>
+                    <li>Infinit Scroll</li>
+                    <li>Connection</li>
+                </ul>
+            </li>
         </ul>
     </div>
 </div>

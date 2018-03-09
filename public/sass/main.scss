@@ -204,6 +204,13 @@ nav {
   }
 }
 
+.nbLinks {
+  margin-bottom: 30px;
+  min-height: 50px;
+  text-align: right;
+
+}
+
 .myCard {
   width: 100%;
   height: 200px;
@@ -232,7 +239,7 @@ nav {
       left: -18px;
       top: -5px;
       display: none;
-      .share_link{
+      .share_link {
         display: block;
         margin: 2px;
       }
@@ -307,7 +314,7 @@ nav {
 
   &:hover {
     .content {
-      background: fade-out(lighten($color, 45%), 0.4)  !important;
+      background: fade-out(lighten($color, 45%), 0.3) !important;
       color: $color2;
 
       .name {

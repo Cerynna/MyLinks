@@ -31,7 +31,16 @@
         </div>
     </div>
     <div class="row">
-
+        <div class="col text-center">
+            LES FILTRES BIENTOT
+        </div>
+        <div class="col-4">
+            <div class="nbLinks">
+                <span id="nbLinks">0</span> Links
+            </div>
+        </div>
+    </div>
+    <div class="row">
         <?php
         $i = 0;
         foreach ($listLinks as $link) {
@@ -48,16 +57,19 @@
                         <div class="share" id="share_<?php echo $i; ?>">
                             <div class="share_link myLinkPopup"
                                  data-size="580,680"
+                                 data-name="Share Facebook"
                                  data-link="https://www.facebook.com/sharer/sharer.php?u=<?php echo utf8_encode($link["link"]); ?>">
                                 <i class="fab fa-facebook-square icons"></i>
                             </div>
                             <div class="share_link myLinkPopup"
                                  data-size="580,300"
+                                 data-name="Share Twitter"
                                  data-link="https://twitter.com/home?status=<?php echo utf8_encode($link["link"]); ?>">
                                 <i class="fab fa-twitter-square icons"></i>
                             </div>
                             <div class="share_link myLinkPopup"
                                  data-size="580,530"
+                                 data-name="Share Linkedin"
                                  data-link="https://www.linkedin.com/shareArticle?mini=true&url=<?php echo utf8_encode($link["link"]); ?>&title=<?php echo $link["nom"]; ?>&summary=&source=">
                                 <i class="fab fa-linkedin icons "></i>
                             </div>
@@ -112,6 +124,17 @@
 <script>
     $(document).ready(function () {
 
+        $('#nbLinks').animateNumber(
+            {
+                number: <?php echo count($listLinks); ?>,
+                color: 'green',
+                'font-size': '30px',
+
+                easing: 'easeInQuad',
+
+            },
+            3000
+        );
         const modalTag = $('#modalTag');
         const modalEdit = $('#modalEdit');
         const allModal = $('.modal');
@@ -136,7 +159,7 @@
         $('.myLinkPopup').click(function (callback) {
             console.log("TU CLICK");
             const size = $(this).data('size').split(',');
-            window.open($(this).data('link'), "nom_popup", "menubar=no, status=no, scrollbars=no, menubar=no, width=" + size[0] + ", height=" + size[1]);
+            MyLinkPopup($(this).data('link'), size, $(this).data('name'))
         });
 
 
@@ -200,17 +223,17 @@
 
     });
 
-    $('.content').hover(function (callback) {
-        const idDiv = $(this)[0].id;
-        $("#" + idDiv + " .tags").animate({
-            scrollTop: 0
-        });
-        scrollTags();
-    })
+    /* $('.content').hover(function (callback) {
+         const idDiv = $(this)[0].id;
+         $("#" + idDiv + " .tags").animate({
+             scrollTop: 0
+         });
+         scrollTags();
+     })*/
 
-    function MyLinkPopup() {
-        width = 300;
-        height = 200;
+    function MyLinkPopup(url, size, name) {
+        width = size[0];
+        height = size[1];
         if (window.innerWidth) {
             var left = (window.innerWidth - width) / 2;
             var top = (window.innerHeight - height) / 2;
@@ -219,7 +242,7 @@
             var left = (document.body.clientWidth - width) / 2;
             var top = (document.body.clientHeight - height) / 2;
         }
-        window.open('pageb.html', 'nom_de_ma_popup', 'menubar=no, scrollbars=no, top=' + top + ', left=' + left + ', width=' + width + ', height=' + height + '');
+        window.open(url, name, 'menubar=no, scrollbars=no, top=' + top + ', left=' + left + ', width=' + width + ', height=' + height + '');
     }
 
 
