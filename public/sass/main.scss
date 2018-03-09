@@ -4,6 +4,7 @@ node-sass --watch public/sass/main.scss public/sass/main.css
 
 $color: #00FF68;
 $color2: #1E232D;
+@import "animate.css";
 @mixin positionSticky($top) {
   position: sticky;
   position: -webkit-sticky;
@@ -22,6 +23,46 @@ body {
   &::-webkit-scrollbar {
     display: none;
   }
+  .modal-open {
+    overflow: hidden;
+  }
+  label {
+    display: none;
+  }
+  input {
+    border: 2px solid transparent;
+    border-bottom: 2px solid $color;
+    width: 100%;
+    padding: 2px 5px;
+    outline: none;
+    border-radius: 5px;
+    margin: 5px 0;
+    height: 40px;
+    &:focus {
+      border: 2px solid $color;
+      background: lighten($color, 45%);
+    }
+    &:hover {
+      border: 2px solid $color;
+    }
+  }
+  textarea {
+    border: 2px solid transparent;
+    border-bottom: 2px solid $color;
+    width: 100%;
+    height: 80px;
+    padding: 2px 5px;
+    outline: none;
+    border-radius: 5px;
+    margin: 5px 0;
+    &:focus {
+      border: 2px solid $color;
+      background: lighten($color, 45%);
+    }
+    &:hover {
+      border: 2px solid $color;
+    }
+  }
 }
 
 nav {
@@ -31,15 +72,34 @@ nav {
   @include positionSticky(0px);
   a {
     font-size: 1.5em;
-    color: #00FF68;
+    color: $color;
     padding: 5px 10px;
     border-radius: 5px;
     border: 2px solid $color2;
     &:hover {
-      color: #00FF68;
+      color: $color;
       background: $color2;
       text-decoration: none;
-      border: 2px solid #00FF68;
+      border: 2px solid $color;
+    }
+  }
+  .form-menu {
+    display: flex;
+    button {
+      height: 40px;
+      margin: 5px 2px;
+      background: $color;
+      flex-grow: 1;
+      padding: 5px 10px;
+      border-radius: 5px;
+      text-align: center;
+      border: 2px solid $color;
+      cursor: pointer;
+      &:hover {
+        border: 2px solid $color;
+        background: $color2;
+        color: $color;
+      }
     }
   }
 }
@@ -65,6 +125,22 @@ nav {
       background: #FFF;
       padding: 10px;
       border-radius: 5px;
+      .title {
+        font-size: 1.6em;
+      }
+      .submit {
+        background: $color2;
+        padding: 5px 10px;
+        border-radius: 5px;
+        margin: 10px auto;
+        text-align: center;
+        border: 2px solid $color2;
+        cursor: pointer;
+        &:hover {
+          border: 2px solid $color;
+        }
+      }
+
     }
   }
   .tag {
@@ -103,6 +179,21 @@ nav {
   }
 }
 
+.icons-fat {
+  background: $color2;
+  color: $color;
+  padding: 10px;
+  font-size: 2.8em;
+  border-radius: 5px;
+  border: 2px solid $color;
+  cursor: pointer;
+  width: 100%;
+  &:hover {
+    background: $color;
+    color: $color2;
+  }
+}
+
 .icons-mini {
   color: $color2;
   font-size: 1em;
@@ -121,10 +212,31 @@ nav {
   border: 2px solid $color;
   background-color: #FFF;
   cursor: pointer;
+  border-radius: 5px;
   .content {
     width: 100%;
     height: 196px;
     padding: 10px;
+    .click {
+      position: absolute;
+      top: 25%;
+      left: 0;
+      background: $color;
+      color: $color2;
+      padding: 5px 10px;
+      border-radius: 5px;
+    }
+    .share {
+      position: absolute;
+      padding: 10px;
+      left: -18px;
+      top: -5px;
+      display: none;
+      .share_link{
+        display: block;
+        margin: 2px;
+      }
+    }
     .tags {
       position: relative;
       top: -33px;
@@ -152,15 +264,17 @@ nav {
 
     .name {
       position: relative;
-      color: $color2;
-      background: lighten($color, 80%);
+      color: $color;
+      background: $color2;
       padding: 5px 10px;
       border-radius: 5px;
       width: 90%;
-      height: 34px;
       margin: auto;
       overflow: hidden;
       z-index: 10;
+      text-align: center;
+      max-height: 34px;
+      transition: max-height 0.01s ease-out;
     }
     .desc {
       color: $color2;
@@ -170,7 +284,7 @@ nav {
       min-height: 100px;
       max-height: 100px;
       width: 100%;
-      text-align: justify;
+      text-align: center;
       overflow: hidden;
       overflow-y: scroll;
       &::-webkit-scrollbar {
@@ -193,12 +307,16 @@ nav {
 
   &:hover {
     .content {
-      background: rgba(255, 255, 255, 0.55) !important;
+      background: fade-out(lighten($color, 45%), 0.4)  !important;
+      color: $color2;
+
       .name {
-        height: auto !important;
+        max-height: 100px;
+        transition: max-height 0.5s ease-in;
       }
       .desc {
         display: block;
+        font-size: 1.2em;
       }
       .tags {
         display: none;

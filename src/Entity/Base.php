@@ -21,9 +21,9 @@ class Base
 
     public function __construct()
     {
-        $this->base = unserialize(file_get_contents("base.json"));
-        $this->tags = unserialize(file_get_contents("tags.json"));
-        $this->badWords = unserialize(file_get_contents("badWords.json"));
+        $this->base = json_decode(file_get_contents("base.json"), true);
+        $this->tags = json_decode(file_get_contents("tags.json"), true);
+        $this->badWords = json_decode(file_get_contents("badWords.json"), true);
     }
 
     public function getListLinks()
@@ -84,17 +84,14 @@ class Base
                                 $newArray[$tag]['name'] = $tag;
                                 $newArray[$tag]['nb'] = 1;
                                 $newArray[$tag]['links'][] = $slug;
-
                             } else {
                                 if (!in_array($slug, $newArray[$tag]['links'])) {
                                     $newArray[$tag]['nb'] = $newArray[$tag]['nb'] + 1;
                                     $newArray[$tag]['links'][] = $slug;
                                     $newArray[$tag]['links'] = array_unique($newArray[$tag]['links']);
                                 }
-
                             }
                         }
-
                     }
                 }
             }
@@ -114,17 +111,13 @@ class Base
                 $this->saveJson("base.json", $this->base);
             }
         }
-
         unset($this->tags[$name]);
         $this->saveJson("tags.json", $this->tags);
-
-
         if (is_null($this->badWords)) {
             $newArray[] = $name;
         } else {
             array_push($this->badWords, $name);
         }
-
         $this->saveJson("badWords.json", array_unique($this->badWords));
 
 
@@ -151,9 +144,19 @@ class Base
         $this->saveJson("base.json", $this->base);
     }
 
+    public function addClick($slug)
+    {
+        if (!isset($this->base[$slug]["click"])) {
+            $this->base[$slug]["click"] = 1;
+        } else {
+            $this->base[$slug]["click"] = $this->base[$slug]["click"] + 1;
+        }
+        $this->saveJson("base.json", $this->base);
+    }
+
     public function saveJson($filename, $array)
     {
-        file_put_contents($filename, serialize($array));
+        file_put_contents($filename, json_encode($array));
     }
 
     /**

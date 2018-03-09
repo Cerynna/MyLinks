@@ -1,12 +1,45 @@
 /**
 node-sass --watch public/sass/main.scss public/sass/main.css
   */
+@import url(animate.css);
 body {
   background: url("/public/img/back.png") fixed;
   background-size: cover;
   color: black; }
   body::-webkit-scrollbar {
     display: none; }
+  body .modal-open {
+    overflow: hidden; }
+  body label {
+    display: none; }
+  body input {
+    border: 2px solid transparent;
+    border-bottom: 2px solid #00FF68;
+    width: 100%;
+    padding: 2px 5px;
+    outline: none;
+    border-radius: 5px;
+    margin: 5px 0;
+    height: 40px; }
+    body input:focus {
+      border: 2px solid #00FF68;
+      background: #e6fff0; }
+    body input:hover {
+      border: 2px solid #00FF68; }
+  body textarea {
+    border: 2px solid transparent;
+    border-bottom: 2px solid #00FF68;
+    width: 100%;
+    height: 80px;
+    padding: 2px 5px;
+    outline: none;
+    border-radius: 5px;
+    margin: 5px 0; }
+    body textarea:focus {
+      border: 2px solid #00FF68;
+      background: #e6fff0; }
+    body textarea:hover {
+      border: 2px solid #00FF68; }
 
 nav {
   background: #1E232D;
@@ -30,6 +63,22 @@ nav {
       background: #1E232D;
       text-decoration: none;
       border: 2px solid #00FF68; }
+  nav .form-menu {
+    display: flex; }
+    nav .form-menu button {
+      height: 40px;
+      margin: 5px 2px;
+      background: #00FF68;
+      flex-grow: 1;
+      padding: 5px 10px;
+      border-radius: 5px;
+      text-align: center;
+      border: 2px solid #00FF68;
+      cursor: pointer; }
+      nav .form-menu button:hover {
+        border: 2px solid #00FF68;
+        background: #1E232D;
+        color: #00FF68; }
 
 .main {
   margin-top: 20px;
@@ -52,6 +101,18 @@ nav {
       background: #FFF;
       padding: 10px;
       border-radius: 5px; }
+      .main .modal .contentModal .title {
+        font-size: 1.6em; }
+      .main .modal .contentModal .submit {
+        background: #1E232D;
+        padding: 5px 10px;
+        border-radius: 5px;
+        margin: 10px auto;
+        text-align: center;
+        border: 2px solid #1E232D;
+        cursor: pointer; }
+        .main .modal .contentModal .submit:hover {
+          border: 2px solid #00FF68; }
   .main .tag {
     display: inline-flex;
     margin: 2px 5px;
@@ -83,6 +144,19 @@ nav {
     background: #00FF68;
     color: #1E232D; }
 
+.icons-fat {
+  background: #1E232D;
+  color: #00FF68;
+  padding: 10px;
+  font-size: 2.8em;
+  border-radius: 5px;
+  border: 2px solid #00FF68;
+  cursor: pointer;
+  width: 100%; }
+  .icons-fat:hover {
+    background: #00FF68;
+    color: #1E232D; }
+
 .icons-mini {
   color: #1E232D;
   font-size: 1em;
@@ -98,11 +172,29 @@ nav {
   margin-bottom: 50px;
   border: 2px solid #00FF68;
   background-color: #FFF;
-  cursor: pointer; }
+  cursor: pointer;
+  border-radius: 5px; }
   .myCard .content {
     width: 100%;
     height: 196px;
     padding: 10px; }
+    .myCard .content .click {
+      position: absolute;
+      top: 25%;
+      left: 0;
+      background: #00FF68;
+      color: #1E232D;
+      padding: 5px 10px;
+      border-radius: 5px; }
+    .myCard .content .share {
+      position: absolute;
+      padding: 10px;
+      left: -18px;
+      top: -5px;
+      display: none; }
+      .myCard .content .share .share_link {
+        display: block;
+        margin: 2px; }
     .myCard .content .tags {
       position: relative;
       top: -33px;
@@ -125,15 +217,17 @@ nav {
         z-index: -10; }
     .myCard .content .name {
       position: relative;
-      color: #1E232D;
-      background: white;
+      color: #00FF68;
+      background: #1E232D;
       padding: 5px 10px;
       border-radius: 5px;
       width: 90%;
-      height: 34px;
       margin: auto;
       overflow: hidden;
-      z-index: 10; }
+      z-index: 10;
+      text-align: center;
+      max-height: 34px;
+      transition: max-height 0.01s ease-out; }
     .myCard .content .desc {
       color: #1E232D;
       display: none;
@@ -142,7 +236,7 @@ nav {
       min-height: 100px;
       max-height: 100px;
       width: 100%;
-      text-align: justify;
+      text-align: center;
       overflow: hidden;
       overflow-y: scroll; }
       .myCard .content .desc::-webkit-scrollbar {
@@ -158,11 +252,14 @@ nav {
       .myCard .content .tools .button {
         display: inline; }
   .myCard:hover .content {
-    background: rgba(255, 255, 255, 0.55) !important; }
+    background: rgba(230, 255, 240, 0.6) !important;
+    color: #1E232D; }
     .myCard:hover .content .name {
-      height: auto !important; }
+      max-height: 100px;
+      transition: max-height 0.5s ease-in; }
     .myCard:hover .content .desc {
-      display: block; }
+      display: block;
+      font-size: 1.2em; }
     .myCard:hover .content .tags {
       display: none; }
     .myCard:hover .content .tools {

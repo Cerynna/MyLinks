@@ -12,9 +12,9 @@
         <ul>
             <li>Tag
                 <ul>
-                    <li>Ajoute</li>
-                    <li>Suppression</li>
-                    <li>Blacklist</li>
+                    <li>Suppression unique (seulement sur un seul lien)</li>
+                    <li><s>Ajouter</s></li>
+                    <li><s>Blacklist</s></li>
                 </ul>
             </li>
             <li>Recherche
@@ -26,6 +26,15 @@
             <li>Bug
                 <ul>
                     <li><s>Pas de Méta image => faire un screen de la page</s></li>
+                </ul>
+            </li>
+            <li>
+                Links
+                <ul>
+                    <li><s>Create</s></li>
+                    <li><s>Read</s></li>
+                    <li><s>Update</s></li>
+                    <li><s>Delete</s></li>
                 </ul>
             </li>
         </ul>

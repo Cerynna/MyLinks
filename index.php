@@ -31,6 +31,9 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
         case "deleteLink":
             $base->deleteLink($_POST["slug"]);
             break;
+        case "addClick":
+            $base->addClick($_POST["slug"]);
+            break;
     }
 } else {
     include("views/partials/head.php");
