@@ -15,20 +15,25 @@ namespace Entity;
 class Base
 {
 
-    public $base;
+    public $links;
     public $tags;
     public $badWords;
 
     public function __construct()
     {
-        $this->base = json_decode(file_get_contents("base.json"), true);
+        $this->links = json_decode(file_get_contents("base.json"), true);
         $this->tags = json_decode(file_get_contents("tags.json"), true);
         $this->badWords = json_decode(file_get_contents("badWords.json"), true);
     }
 
     public function getListLinks()
     {
-        return array_reverse($this->base);
+
+        usort($this->links, function ($a, $b) {
+            return $a['click'] <=> $b['click'];
+        });
+        $listLinks = array_reverse($this->links);
+        return $listLinks;
     }
 
     public function getListTags()
@@ -43,14 +48,14 @@ class Base
     public function addLink($array, $slug)
     {
         if (is_array($array)) {
-            if (is_null($this->base)) {
+            if (is_null($this->links)) {
                 $newArray[] = $array;
             } else {
-                if (array_key_exists($slug, $this->base)) {
-                    if (!isset ($this->base[$slug]["meta"]["image"]) or is_null($this->base[$slug]["meta"]["image"])) {
-                        $this->base[$slug]["meta"]["image"] = $array["meta"]["image"];
+                if (array_key_exists($slug, $this->links)) {
+                    if (!isset ($this->links[$slug]["meta"]["image"]) or is_null($this->links[$slug]["meta"]["image"])) {
+                        $this->links[$slug]["meta"]["image"] = $array["meta"]["image"];
 
-                        $this->saveJson("base.json", $this->base);
+                        $this->saveJson("base.json", $this->links);
                         $message = "'" . $array["nom"] . "' Update  dans la liste";
                         return false;
                     }
@@ -58,7 +63,7 @@ class Base
                     $message = "'" . $array["nom"] . "' existe dans la liste";
                     return false;
                 }
-                $newArray = array_merge($this->base, [$slug => $array]);
+                $newArray = array_merge($this->links, [$slug => $array]);
             }
             $this->saveJson("base.json", $newArray);
             return true;
@@ -106,9 +111,9 @@ class Base
     {
         $links = explode(',', $links);
         foreach ($links as $link) {
-            if (($key = array_search($name, $this->base[$link]["tags"])) !== false) {
-                unset($this->base[$link]["tags"][$key]);
-                $this->saveJson("base.json", $this->base);
+            if (($key = array_search($name, $this->links[$link]["tags"])) !== false) {
+                unset($this->links[$link]["tags"][$key]);
+                $this->saveJson("base.json", $this->links);
             }
         }
         unset($this->tags[$name]);
@@ -125,33 +130,33 @@ class Base
 
     public function addTagToLink($slug, $tag)
     {
-        $this->base[$slug]["tags"][] = $tag;
-        $this->saveJson("base.json", $this->base);
+        $this->links[$slug]["tags"][] = $tag;
+        $this->saveJson("base.json", $this->links);
         $this->addTags([$tag], $slug);
     }
 
     public function updateLink($slug, $data)
     {
-        $this->base[$slug]["nom"] = $data["title"];
-        $this->base[$slug]["meta"]["description"] = $data["desc"];
-        $this->saveJson("base.json", $this->base);
+        $this->links[$slug]["nom"] = $data["title"];
+        $this->links[$slug]["meta"]["description"] = $data["desc"];
+        $this->saveJson("base.json", $this->links);
         return true;
     }
 
     public function deleteLink($slug)
     {
-        unset($this->base[$slug]);
-        $this->saveJson("base.json", $this->base);
+        unset($this->links[$slug]);
+        $this->saveJson("base.json", $this->links);
     }
 
     public function addClick($slug)
     {
-        if (!isset($this->base[$slug]["click"])) {
-            $this->base[$slug]["click"] = 1;
+        if (!isset($this->links[$slug]["click"])) {
+            $this->links[$slug]["click"] = 1;
         } else {
-            $this->base[$slug]["click"] = $this->base[$slug]["click"] + 1;
+            $this->links[$slug]["click"] = $this->links[$slug]["click"] + 1;
         }
-        $this->saveJson("base.json", $this->base);
+        $this->saveJson("base.json", $this->links);
     }
 
     public function saveJson($filename, $array)
@@ -162,17 +167,17 @@ class Base
     /**
      * @return mixed
      */
-    public function getBase()
+    public function getLinks()
     {
-        return $this->base;
+        return $this->links;
     }
 
     /**
-     * @param mixed $base
+     * @param mixed $links
      */
-    public function setBase($base)
+    public function setLinks($links)
     {
-        $this->base = $base;
+        $this->links = $links;
     }
 
     /**
