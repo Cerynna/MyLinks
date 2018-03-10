@@ -40,7 +40,7 @@
             </div>
         </div>
     </div>
-    <div class="row">
+    <div class="row" id="listLinks">
         <?php
         $i = 0;
         foreach ($listLinks as $link) {
@@ -85,42 +85,54 @@
                             <?php
                             foreach ($link["tags"] as $tag) {
                                 ?>
-                                <span class="tag"><?php echo $tag; ?></span>
+                                <span class="tag">
+                                    <div class="deleteTagToLink hidden"
+                                         data-tag="<?php echo $tag["name"]; ?>"
+                                         data-slug="<?php echo $link["link"]; ?>">
+                                            <i class="fas fa-times-circle icons-mini"></i>
+                                    </div>
+                                    <?php echo $tag; ?>
+                                </span>
                                 <?php
                             }
                             ?>
 
                         </div>
-                        <div class="row tools">
-                            <div class="col button changeView"
-                                 data-link="link_<?php echo $i; ?>">
-                                <i class="fas fa-trash-alt icons"></i>
-                            </div>
-                            <div class="col button deleteLink"
-                                 data-link="<?php echo $link["slug"]; ?>">
-                                <i class="fas fa-trash-alt icons"></i>
-                            </div>
-                            <!--
-                            Pouvoir changer la miniature soit via API google pour le screen
-                            Soit utilisé Croppie avec image perso
-                            <i class="fas fa-image icons"></i>-->
-                            <div class="col button addTag"
-                                 data-link="<?php echo $link["slug"]; ?>"
-                                 data-name="<?php echo $link["nom"]; ?>">
-                                <i class="fas fa-plus-square icons"></i>
-                            </div>
-                            <div class="col button editLink"
-                                 data-link="link_<?php echo $i; ?>"
-                                 data-slug="<?php echo $link["slug"]; ?>">
-                                <i class="fas fa-pen-square icons"></i>
+                        <div class="tools">
+                            <div class="row">
+                                <div class="col button changeView"
+                                     data-link="link_<?php echo $i; ?>">
+                                    <i class="fas fa-tags icons"></i>
+                                </div>
+                                <div class="col button addTag"
+                                     data-link="<?php echo $link["slug"]; ?>"
+                                     data-name="<?php echo $link["nom"]; ?>">
+                                    <i class="fas fa-plus-square icons"></i>
+                                </div>
+                                <div class="col">
+
+                                </div>
+
+                                <!--
+                                Pouvoir changer la miniature soit via API google pour le screen
+                                Soit utilisé Croppie avec image perso
+                                <i class="fas fa-image icons"></i>-->
+
+                                <div class="col button editLink"
+                                     data-link="link_<?php echo $i; ?>"
+                                     data-slug="<?php echo $link["slug"]; ?>">
+                                    <i class="fas fa-pen-square icons"></i>
+                                </div>
+                                <div class="col button deleteLink"
+                                     data-link="<?php echo $link["slug"]; ?>">
+                                    <i class="fas fa-trash-alt icons"></i>
+                                </div>
                             </div>
                         </div>
                     </div>
 
                 </div>
             </div>
-
-
             <?php
             $i++;
         }

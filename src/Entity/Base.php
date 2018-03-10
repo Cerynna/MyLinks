@@ -18,6 +18,7 @@ class Base
     public $links;
     public $tags;
     public $badWords;
+    const SLICE_LIST_LINKS = 12;
 
     public function __construct()
     {
@@ -26,12 +27,16 @@ class Base
         $this->badWords = json_decode(file_get_contents("badWords.json"), true);
     }
 
-    public function getListLinks()
+    public function getListLinks($offset)
     {
         usort($this->links, function ($a, $b) {
             return $a['click'] <=> $b['click'];
         });
         $listLinks = array_reverse($this->links);
+        /*if ($offset !== 0) {
+            $offset = $offset + 1;
+        }*/
+        $listLinks = array_slice($listLinks, $offset, self::SLICE_LIST_LINKS);
         return $listLinks;
     }
 
@@ -210,6 +215,15 @@ class Base
     public function setBadWords($badWords)
     {
         $this->badWords = $badWords;
+    }
+
+    /**
+     * @return int
+     */
+    public function getCountLinks()
+    {
+        $count = count($this->links);
+        return $count;
     }
 
 

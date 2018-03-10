@@ -20,7 +20,7 @@
 <script>
     $('#nbLinks').animateNumber(
         {
-            number: <?php echo count($listLinks); ?>,
+            number: <?php echo $base->getCountLinks(); ?>,
             color: 'green',
             'font-size': '30px',
             easing: 'easeInQuad',

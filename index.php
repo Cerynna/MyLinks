@@ -5,6 +5,10 @@ $path = $_GET["route"];
 if ($_SERVER['REQUEST_METHOD'] === "POST") {
     header('Content-Type: application/json');
     switch ($path) {
+        case"getLinks":
+            echo json_encode($base->getListLinks($_POST['offset']));
+            return true;
+            break;
         case"addBadWord":
             $base->addBadWord($_POST["links"], $_POST["tag"]);
             return true;
@@ -47,7 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
         case "listLinks":
         case null:
         case "":
-            $listLinks = $base->getListLinks();
+            $listLinks = $base->getListLinks(0);
             $listTags = $base->getListTags();
             include('views/listLinks.php');
             $jsActive = true;
@@ -72,8 +76,11 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
             $js = file_get_contents("public/js/$path.js");
             $minifiedCode = \JShrink\Minifier::minify($js);
             file_put_contents("public/js/$path.min.js", $minifiedCode);
+            echo "<script src=\"public/js/$path.js\"></script>";
+        } else {
+            echo "<script src=\"public/js/$path.min.js\"></script>";
         }
-        echo "<script src=\"public/js/$path.min.js\"></script>";
+
     }
 
     include("views/partials/footer.php");

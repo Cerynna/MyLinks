@@ -80,6 +80,9 @@ nav {
         background: #1E232D;
         color: #00FF68; }
 
+.hidden {
+  display: none; }
+
 .main {
   margin-top: 20px;
   background-color: #1E232D;
@@ -203,7 +206,7 @@ nav {
     .myCard .content .tags {
       position: relative;
       top: 0;
-      background: red;
+      padding-top: 10px;
       text-align: center;
       height: 160px;
       overflow: hidden;
@@ -232,8 +235,10 @@ nav {
       overflow: hidden;
       z-index: 10;
       text-align: center;
-      max-height: 34px;
-      transition: max-height 0.01s ease-out; }
+      max-height: 35px;
+      line-height: 25px;
+      line-break: strict;
+      transition: max-height 0.5s ease-out; }
     .myCard .content .desc {
       color: #1E232D;
       display: none;
@@ -248,15 +253,24 @@ nav {
       .myCard .content .desc::-webkit-scrollbar {
         display: none; }
     .myCard .content .tools {
+      background: #00FF68;
       position: absolute;
-      bottom: 0;
-      width: 100%;
+      bottom: 5px;
+      width: 290px;
       display: none;
       margin: auto;
-      padding: 5px 10px;
-      border-radius: 5px; }
+      padding: 0 10px;
+      border-radius: 0 0 5px 5px; }
+      .myCard .content .tools .col {
+        padding: 0 !important; }
       .myCard .content .tools .button {
         display: inline; }
+      .myCard .content .tools .icons {
+        background: #00FF68;
+        color: #1E232D; }
+        .myCard .content .tools .icons:hover {
+          background: #1E232D;
+          color: #00FF68; }
   .myCard:hover .content {
     background: rgba(230, 255, 240, 0.7) !important;
     color: #1E232D; }
@@ -267,7 +281,9 @@ nav {
       display: block;
       font-size: 1.2em; }
     .myCard:hover .content .tags {
-      height: 130px;
+      height: 85%;
+      padding-bottom: 50px;
+      margin-bottom: 5px;
       display: none; }
     .myCard:hover .content .tools {
       display: block; }
