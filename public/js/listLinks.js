@@ -1,5 +1,3 @@
-
-
 $(document).ready(function () {
 
     const modalTag = $('#modalTag');
@@ -130,7 +128,7 @@ $(document).ready(function () {
         if ($(window).scrollTop() + $(window).height() >= $(document).height() - 1) {
 
             let actualScroll = $('body').data("scroll");
-            AjaxGetListLinks(actualScroll+1);
+            AjaxGetListLinks(actualScroll + 1);
             $('body').data('scroll', actualScroll + 12);
             $(".push").stop().animate({
                 opacity: 0.25,
@@ -171,9 +169,15 @@ function scrollTags() {
 function trameLinks(link, offset) {
     html = '<div class="col col-md-4 col-xs-1">\n' +
         '                <div class="myCard"\n' +
-        '                     style="background-size: cover;\n' +
-        '                             background: #FFF url(\'' + link.meta.image + '\') center no-repeat;">\n' +
-        '                    <div class="content" id="link_' + offset + '">\n' +
+        '                     style="background-size: cover;\n';
+    if (link.meta !== null && link.meta.image.length !== undefined && link.meta.image.length !== 0) {
+        html += '                             background: #FFF url(\'' + link.meta.image + '\') center no-repeat;">\n';
+    } else {
+        html += '                             background: #FFF center no-repeat;">\n';
+    }
+
+
+    html += '                    <div class="content" id="link_' + offset + '">\n' +
         '                        <div class="click" data-share="share_' + offset + '">\n';
     if (link.click === undefined) {
         html += '0'
@@ -205,12 +209,14 @@ function trameLinks(link, offset) {
         '                        <div class="name">' + link.nom + '</div>\n' +
         '                        <div class="desc myLink"\n' +
         '                             data-slug="' + encodeURI(link.slug) + '"\n' +
-        '                             data-link="' + encodeURI(link.link) + '">\n' +
-        '                            ' + link.meta.description + '\n' +
-        '                        </div>\n' +
+        '                             data-link="' + encodeURI(link.link) + '">\n';
+    if (link.meta !== null) {
+        html += '                            ' + link.meta.description + '\n';
+    }
+    html += '                        </div>\n' +
         '                        <div class="tags">\n';
     /*'                            <div class="push"></div>\n';*/
-    if (link.tags.length !== undefined && link.tags.length !== 0) {
+    if (link.tags !== null && link.tags.length !== undefined && link.tags.length !== 0) {
 
         link.tags.forEach(function (tag) {
             html += '                                <span class="tag">\n' +
