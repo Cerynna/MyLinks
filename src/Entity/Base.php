@@ -28,7 +28,6 @@ class Base
 
     public function getListLinks()
     {
-
         usort($this->links, function ($a, $b) {
             return $a['click'] <=> $b['click'];
         });
@@ -54,13 +53,11 @@ class Base
                 if (array_key_exists($slug, $this->links)) {
                     if (!isset ($this->links[$slug]["meta"]["image"]) or is_null($this->links[$slug]["meta"]["image"])) {
                         $this->links[$slug]["meta"]["image"] = $array["meta"]["image"];
-
                         $this->saveJson("base.json", $this->links);
-                        $message = "'" . $array["nom"] . "' Update  dans la liste";
+                        //$message = "'" . $array["nom"] . "' Update  dans la liste";
                         return false;
                     }
-
-                    $message = "'" . $array["nom"] . "' existe dans la liste";
+                    //$message = "'" . $array["nom"] . "' existe dans la liste";
                     return false;
                 }
                 $newArray = array_merge($this->links, [$slug => $array]);
@@ -107,25 +104,20 @@ class Base
         }
     }
 
-    public function addBadWord($name, $links)
+    public function addBadWord($links, $tag)
     {
         $links = explode(',', $links);
-        foreach ($links as $link) {
-            if (($key = array_search($name, $this->links[$link]["tags"])) !== false) {
-                unset($this->links[$link]["tags"][$key]);
-                $this->saveJson("base.json", $this->links);
-            }
+        foreach ($links as $slug) {
+            $this->deleteTagToLink($slug, $tag);
         }
-        unset($this->tags[$name]);
+        unset($this->tags[$tag]);
         $this->saveJson("tags.json", $this->tags);
         if (is_null($this->badWords)) {
-            $newArray[] = $name;
+            $newArray[] = $tag;
         } else {
-            array_push($this->badWords, $name);
+            array_push($this->badWords, $tag);
         }
         $this->saveJson("badWords.json", array_unique($this->badWords));
-
-
     }
 
     public function addTagToLink($slug, $tag)
@@ -133,6 +125,14 @@ class Base
         $this->links[$slug]["tags"][] = $tag;
         $this->saveJson("base.json", $this->links);
         $this->addTags([$tag], $slug);
+    }
+
+    public function deleteTagToLink($slug, $tag)
+    {
+        if (($key = array_search($tag, $this->links[$slug]["tags"])) !== false) {
+            unset($this->links[$slug]["tags"][$key]);
+            $this->saveJson("base.json", $this->links);
+        }
     }
 
     public function updateLink($slug, $data)

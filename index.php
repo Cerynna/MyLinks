@@ -1,5 +1,4 @@
 <?php
-
 $loader = require __DIR__ . '/vendor/autoload.php';
 $base = new Entity\Base();
 $path = $_GET["route"];
@@ -7,11 +6,15 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
     header('Content-Type: application/json');
     switch ($path) {
         case"addBadWord":
-            $base->addBadWord($_POST["name"], $_POST["links"]);
+            $base->addBadWord($_POST["links"], $_POST["tag"]);
             return true;
             break;
         case"addTagToLink":
             $base->addTagToLink($_POST["slug"], $_POST["tag"]);
+            return true;
+            break;
+        case"deleteTagToLink":
+            $base->deleteTagToLink($_POST["slug"], $_POST["tag"]);
             return true;
             break;
         case "addLink":
@@ -26,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
             header('Location: ?route=listLinks');
             break;
         case "updateLink":
-            $base->updateLink($_POST["slug"],$_POST["data"]);
+            $base->updateLink($_POST["slug"], $_POST["data"]);
             break;
         case "deleteLink":
             $base->deleteLink($_POST["slug"]);
@@ -39,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
     include("views/partials/head.php");
     include("views/partials/menu.php");
 
-
+    $jsActive = false;
     switch ($path) {
         case "listLinks":
         case null:
@@ -47,6 +50,8 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
             $listLinks = $base->getListLinks();
             $listTags = $base->getListTags();
             include('views/listLinks.php');
+            $jsActive = true;
+            $path = "listLinks";
             break;
         case "newLink":
             include('views/newLink.php');
@@ -55,14 +60,21 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
         case "listTags":
             $listTags = $base->getListTags();
             include('views/listTags.php');
+            $jsActive = true;
             break;
         case "toDo":
             include('views/toDo.php');
             break;
-
-
     }
-
+    include("views/partials/script.php");
+    if ($jsActive === true) {
+        if ($_SERVER['SERVER_NAME'] === '127.0.0.1') {
+            $js = file_get_contents("public/js/$path.js");
+            $minifiedCode = \JShrink\Minifier::minify($js);
+            file_put_contents("public/js/$path.min.js", $minifiedCode);
+        }
+        echo "<script src=\"public/js/$path.min.js\"></script>";
+    }
 
     include("views/partials/footer.php");
 }
