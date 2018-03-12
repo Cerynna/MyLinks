@@ -35,25 +35,6 @@ $(document).ready(function () {
         MyLinkPopup($(this).data('link'), size, $(this).data('name'))
     });
 
-
-    $('.addTag').click(function () {
-        $('.submitTag').attr('data-link', $(this).data('link'));
-        modalTag.fadeIn();
-        $('#newTag').focus();
-        $('body').addClass('modal-open');
-    });
-    $('.editLink').click(function () {
-        const inputTitleLink = $('#titleLink');
-        const inputDescLink = $('#descLink');
-        const title = $('#' + $(this).data('link') + ' .name').text();
-        const desc = $('#' + $(this).data('link') + ' .desc').text();
-        $('.submitEdit').attr('data-link', $(this).data('slug'));
-        inputTitleLink.val(title);
-        inputDescLink.val(desc);
-        modalEdit.fadeIn();
-        inputTitleLink.focus();
-        $('body').addClass('modal-open');
-    });
     $(document).keyup(function (e) {
         if (e.keyCode === 27) {
             closeModal.click();
@@ -84,17 +65,34 @@ $(document).ready(function () {
         const slugLink = $(this).data('link');
         if (inputValue !== "") {
             AjaxUrl(slugLink, inputValue);
-
         }
         location.reload();
 
     });
 
+    /*$('.addTag').click(function () {
+        $('.submitTag').attr('data-link', $(this).data('link'));
+        modalTag.fadeIn();
+        $('#newTag').focus();
+        $('body').addClass('modal-open');
+    });
+    $('.editLink').click(function () {
+        const inputTitleLink = $('#titleLink');
+        const inputDescLink = $('#descLink');
+        const title = $('#' + $(this).data('link') + ' .name').text();
+        const desc = $('#' + $(this).data('link') + ' .desc').text();
+        $('.submitEdit').attr('data-link', $(this).data('slug'));
+        inputTitleLink.val(title);
+        inputDescLink.val(desc);
+        modalEdit.fadeIn();
+        inputTitleLink.focus();
+        $('body').addClass('modal-open');
+    });
     $('.deleteLink').click(function () {
         const slugLink = $(this).data('link');
         AjaxDeleteLink(slugLink);
         location.reload();
-    });
+    });*/
     $('.changeView').click(function () {
         const idDiv = $(this).data("link");
         $('#' + idDiv + ' .desc').toggle();
@@ -104,6 +102,7 @@ $(document).ready(function () {
             $(tag).removeClass('hidden')
         })
     });
+
     $('#listLinks').on('click', '.changeView', function () {
         const idDiv = $(this).data("link");
         $('#link_' + idDiv + ' .desc').toggle();
@@ -113,7 +112,34 @@ $(document).ready(function () {
             $(tag).removeClass('hidden')
         });
         return false;
+    }).on('click', '.deleteLink', function () {
+
+        const slugLink = $(this).data('link');
+        AjaxDeleteLink(slugLink);
+        location.reload();
+        return false;
+    }).on('click', '.addTag', function () {
+        $('.submitTag').attr('data-link', $(this).data('link'));
+        modalTag.fadeIn();
+        $('#newTag').focus();
+        $('body').addClass('modal-open');
+        return false;
+    }).on('click', '.editLink', function () {
+        const inputTitleLink = $('#titleLink');
+        const inputDescLink = $('#descLink');
+        console.log($(this).data('link'));
+        const title = $('#link_' + $(this).data('link') + ' .name').text();
+        const desc = $('#link_' + $(this).data('link') + ' .desc').text();
+        $('.submitEdit').attr('data-link', $(this).data('slug'));
+        inputTitleLink.val(title);
+        inputDescLink.val(desc);
+        modalEdit.fadeIn();
+        inputTitleLink.focus();
+        $('body').addClass('modal-open');
+        return false;
     });
+
+
     $('.content').hover(function () {
         const idDiv = $(this)[0].id;
         $('#' + idDiv + ' .desc').removeAttr('style');
@@ -209,9 +235,9 @@ function trameLinks(link, offset) {
         '                        <div class="name">' + link.nom + '</div>\n' +
         '                        <div class="desc myLink"\n' +
         '                             data-slug="' + encodeURI(link.slug) + '"\n' +
-        '                             data-link="' + encodeURI(link.link) + '">\n';
+        '                             data-link="' + encodeURI(link.link) + '">';
     if (link.meta !== null) {
-        html += '                            ' + link.meta.description + '\n';
+        html +=  link.meta.description ;
     }
     html += '                        </div>\n' +
         '                        <div class="tags">\n';

@@ -40,7 +40,7 @@
             <li>
                 Upgrade
                 <ul>
-                    <li>Infinit Scroll</li>
+                    <li><s>Infinit Scroll</s></li>
                     <li>Connection</li>
                 </ul>
             </li>
