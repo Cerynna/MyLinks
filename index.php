@@ -5,6 +5,11 @@ $path = $_GET["route"];
 if ($_SERVER['REQUEST_METHOD'] === "POST") {
     header('Content-Type: application/json');
     switch ($path) {
+        case"filtres":
+
+            $url = "&tags=" . implode('-', $_POST['tags']);
+            header('Location: ?route=listLinks' . $url);
+            break;
         case"getLinks":
             echo json_encode($base->getListLinks($_POST['offset']));
             return true;
@@ -51,7 +56,8 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
         case "listLinks":
         case null:
         case "":
-            $listLinks = $base->getListLinks(0);
+
+            $listLinks = $base->getListLinks(0, null, $_GET['tags']);
             $listTags = $base->getListTags();
             include('views/listLinks.php');
             $jsActive = true;
@@ -69,6 +75,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
         case "toDo":
             include('views/toDo.php');
             break;
+
     }
     include("views/partials/script.php");
     if ($jsActive === true) {

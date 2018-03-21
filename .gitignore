@@ -1,4 +1,6 @@
 /vendor/
+/node_modules
 /base.json
 /tags.json
 /badWords.json
+/node_modules/

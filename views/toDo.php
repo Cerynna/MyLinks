@@ -19,8 +19,8 @@
             </li>
             <li>Recherche
                 <ul>
-                    <li>Filtre sur les tag</li>
-                    <li>Filtre sur le nb de click</li>
+                    <li><s>Filtre sur les tag</s></li>
+                    <li><s>Filtre sur le nb de click</s></li>
                 </ul>
             </li>
             <li>Bug

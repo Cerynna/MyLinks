@@ -1,3 +1,21 @@
+$(document).on('mouseover', '.click', function () {
+    $('#' + $(this).data('share')).fadeIn("fast");
+}).on('mouseleave', '.share', function () {
+    $(this).fadeOut("fast");
+}).on('mouseenter', '.share', function () {
+    $(this).fadeIn("fast");
+}).on('click', '.myLink', function () {
+    const slugLink = $(this).data('slug');
+    AjaxAddClick(slugLink);
+    window.open($(this).data('link'), '_blank');
+}).on('click', '.myLinkPopup', function () {
+    const size = $(this).data('size').split(',');
+    MyLinkPopup($(this).data('link'), size, $(this).data('name'))
+}).on('click', '#filtres .submit', function () {
+    $( "#filtres" ).submit();
+});
+
+
 $(document).ready(function () {
 
     const modalTag = $('#modalTag');
@@ -7,14 +25,7 @@ $(document).ready(function () {
 
     scrollTags();
 
-    $('.click').mouseover(function () {
-        $('#' + $(this).data('share')).fadeIn("fast");
-    });
-    $('.share').mouseleave(function () {
-        $(this).fadeOut("fast");
-    }).mouseenter(function () {
-        $(this).fadeIn("fast");
-    });
+
     $('.tags').mouseover(function () {
         $('body').addClass('modal-open');
     }).mouseleave(function () {
@@ -25,16 +36,6 @@ $(document).ready(function () {
     }).mouseleave(function () {
         $('body').removeClass('modal-open');
     });
-    $('.myLink').click(function () {
-        const slugLink = $(this).data('slug');
-        AjaxAddClick(slugLink);
-        window.open($(this).data('link'), '_blank');
-    });
-    $('.myLinkPopup').click(function () {
-        const size = $(this).data('size').split(',');
-        MyLinkPopup($(this).data('link'), size, $(this).data('name'))
-    });
-
     $(document).keyup(function (e) {
         if (e.keyCode === 27) {
             closeModal.click();
@@ -237,7 +238,7 @@ function trameLinks(link, offset) {
         '                             data-slug="' + encodeURI(link.slug) + '"\n' +
         '                             data-link="' + encodeURI(link.link) + '">';
     if (link.meta !== null) {
-        html +=  link.meta.description ;
+        html += link.meta.description;
     }
     html += '                        </div>\n' +
         '                        <div class="tags">\n';

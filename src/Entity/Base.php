@@ -27,16 +27,40 @@ class Base
         $this->badWords = json_decode(file_get_contents("badWords.json"), true);
     }
 
-    public function getListLinks($offset)
+    public function getListLinks($offset, $limit = null, $filtres = null)
+
     {
-        usort($this->links, function ($a, $b) {
+        /*var_dump($this->tags);*/
+        $listLinks = [];
+        if ($filtres !== null) {
+            $tags = explode('-', $filtres);
+            /*var_dump($this->links);*/
+            foreach ($this->links as $key => $link) {
+                foreach ($link['tags'] as $tag) {
+                    if (in_array($tag, $tags)) {
+                        $listLinks[$key] = $this->links[$key];
+                    }
+                }
+            }
+        } else {
+            $listLinks = $this->links;
+        }
+        usort($listLinks, function ($a, $b) {
             return $a['click'] <=> $b['click'];
         });
-        $listLinks = array_reverse($this->links);
-        /*if ($offset !== 0) {
-            $offset = $offset + 1;
-        }*/
-        $listLinks = array_slice($listLinks, $offset, self::SLICE_LIST_LINKS);
+
+
+        $listLinks = array_reverse($listLinks);
+
+        if ($limit === null) {
+            $listLinks = array_slice($listLinks, $offset, self::SLICE_LIST_LINKS);
+
+        } else {
+            $listLinks = array_slice($listLinks, $offset, $limit);
+
+        }
+
+
         return $listLinks;
     }
 

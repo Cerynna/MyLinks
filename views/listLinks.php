@@ -7,6 +7,11 @@
  */
 
 ?>
+<pre>
+    <?php
+    //print_r($listTags);
+    ?>
+</pre>
 
 <div class="main container">
     <div class="modal" id="modalTag">
@@ -32,7 +37,16 @@
     </div>
     <div class="row">
         <div class="col text-center">
-            LES FILTRES BIENTOT
+            <form method="post" action="?route=filtres" name="filtres" id="filtres">
+                <div class="refresh"><a href="?route=listLink"><i class="fas fa-sync-alt"></i></a>  </div>
+                <label for="tags">Tags</label>
+                <select name="tags[]" id="tag" multiple>
+                    <?php foreach ($listTags as $key => $tag): ?>
+                    <option value="<?php echo $tag["name"]; ?>"><?php echo $tag["name"]; ?></option>
+                    <?php endforeach; ?>
+                </select>
+                <div class="submit"><i class="fas fa-check"></i></div>
+            </form>
         </div>
         <div class="col-4">
             <div class="nbLinks">
@@ -45,7 +59,6 @@
         $i = 0;
         foreach ($listLinks as $link) {
             ?>
-
             <div class="col col-md-4 col-xs-1">
                 <div class="myCard"
                      style="background-size: cover;
