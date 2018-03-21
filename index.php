@@ -56,6 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
         case "listLinks":
         case null:
         case "":
+
             $listLinks = $base->getListLinks(0, null, $_GET['tags']);
             $listTags = $base->getListTags();
             include('views/listLinks.php');

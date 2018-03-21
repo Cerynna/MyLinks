@@ -36,8 +36,6 @@ $(document).ready(function () {
     }).mouseleave(function () {
         $('body').removeClass('modal-open');
     });
-
-
     $(document).keyup(function (e) {
         if (e.keyCode === 27) {
             closeModal.click();
