@@ -15,16 +15,20 @@
         crossorigin="anonymous"></script>
 <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
 <script src="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.js"></script>
-<script src="/public/js/jquery.animateNumber.js"></script>
+<script src="/dist/bundle.js"></script>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
 <script>
     $('#nbLinks').animateNumber(
         {
-            number: <?php echo count($listLinks); ?>,
+            number: <?php echo $base->getCountLinks(); ?>,
             color: 'green',
             'font-size': '30px',
             easing: 'easeInQuad',
         },
         3000
     );
+    $(document).ready(function () {
+        $('select').select2();
+    })
 </script>
